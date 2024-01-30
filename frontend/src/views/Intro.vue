@@ -74,8 +74,8 @@ onMounted(()=>{
 
     setTimeout( ()=>{
         //Subscribe to each topic
-        Mqtt.subscribe("topic1");
-        Mqtt.subscribe("topic2");
+        Mqtt.subscribe("620154033");
+        Mqtt.subscribe("620154033_pub");
     }, 3000);
 });
 
@@ -89,10 +89,9 @@ onBeforeUnmount(()=>{
 const toggle = (name) => 
 {
     let message = JSON.stringify({"type":"toggle", "device": name}); //Creates message and converts it to a json string
-    useMqttStore.publish("topic", message); //Publishes message to appropriate topic
+    Mqtt.publish("620154033_sub", message); //Publishes message to appropriate topic
 }
 </script>
-
 
 <style scoped>
 /** CSS STYLE HERE */
@@ -103,22 +102,22 @@ font-size: 250px;
 }
 .container{
 height: 100%;
-border: 1px solid blue;
+/* border: 1px solid blue; */
 }
 .row{
 width: 100%;
 margin: 10px 0px;
 padding: 10px;
-border: 1px solid purple;
+/* border: 1px solid purple; */
 }
 .col{
-border: 1px solid green;
+/* border: 1px solid green; */
 margin: 0px 10px;
 }
 .col3{
 max-width: 270px;
 height: 320px;
-border: 2px solid lightslategray;
+/* border: 2px solid lightslategray; */
 }
 .col1, .col2{
 max-width: 200px;

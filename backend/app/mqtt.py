@@ -16,7 +16,7 @@ class MQTT:
     ID = f"IOT_B_{randint(1,1000000)}"
 
     #  DEFINE ALL TOPICS TO SUBSCRIBE TO
-    sub_topics = [("620012345_pub", 0), ("620012345", 0), ("620012345_sub", 0)] #  A list of tuples of (topic, qos). Both topic and qos must be present in the tuple.
+    sub_topics = [("620154033_pub", 0), ("620154033", 0), ("620154033_sub", 0)] #  A list of tuples of (topic, qos). Both topic and qos must be present in the tuple.
 
 
     def __init__(self,mongo):
@@ -34,12 +34,12 @@ class MQTT:
 
 
         # REGISTER CALLBACK FUNCTION FOR EACH TOPIC
-        self.client.message_callback_add("620012345", self.gdp)
-        self.client.message_callback_add("620012345_pub", self.toggle)
+        self.client.message_callback_add("620154033", self.gdp)
+        self.client.message_callback_add("620154033_pub", self.toggle)
 
         # ADD MQTT SERVER AND PORT INFORMATION BELOW
-        self.client.connect_async("localhost", 1883, 60)
-       
+        #self.client.connect_async("176.58.103.182", 1883, 60)
+        self.client.connect_async("www.yanacreations.com", 1883, 60)
 
 
     def connack_string(self,rc):
@@ -106,7 +106,6 @@ class MQTT:
 
         except Exception as e:
             print(f"MQTT: toggle Error - {str(e)}")
-
 
 
      
