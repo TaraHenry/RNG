@@ -115,11 +115,9 @@ void setup() {
   pinMode(BTN_A, INPUT_PULLUP);
   pinMode(LED_A, OUTPUT);
   pinMode(LED_B,OUTPUT);
-
-  initialize();           // INIT WIFI, MQTT & NTP 
-  Display(8);
-  vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
   
+  initialize();           // INIT WIFI, MQTT & NTP 
+  vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
 
 }
   
@@ -161,10 +159,6 @@ void vUpdate( void * pvParameters )  {
 
           // Add key:value pairs to JSon object
           doc["id"]         = "620154033";
-          doc["timestamp"]  = getTimeStamp();
-          doc["number"]     = number;
-          doc["ledA"]       = getLEDStatus(LED_A);
-          doc["ledB"]       = getLEDStatus(LED_B);
 
           serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array
 
@@ -242,7 +236,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     */
 
     serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array  
-    publish(pubtopic, message);    // Publish to a topic that only the Frontend subscribes to.
+    publish("pubtopic", message);    // Publish to a topic that only the Frontend subscribes to.
           
   } 
 
@@ -384,7 +378,7 @@ void toggleLED(int8_t LED){
   } 
   else if(digitalRead(LED) == HIGH){
     digitalWrite(LED, LOW);
-  }
+  } 
 } 
 
 void GDP(void){
